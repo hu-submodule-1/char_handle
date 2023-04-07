@@ -7,6 +7,7 @@
  * @copyright : Copyright (c) 2023 huenrong
  *
  * @history   : date       author          description
+ *              2023-04-07 huenrong        修改字节数组转字符串接口
  *              2023-01-16 huenrong        创建文件
  *
  */
@@ -177,14 +178,12 @@ bool byte_array_to_str(char *str, const uint8_t *byte_array, const uint32_t byte
         return false;
     }
 
-    uint32_t str_len = get_byte_array_to_str_len(byte_array_len);
-    memset(str, 0, str_len);
-
-    for (uint32_t i = 0; i < byte_array_len; i++)
+    uint32_t i = 0;
+    for (i = 0; i < byte_array_len; i++)
     {
         snprintf(str + i * 3, 4, "%02X ", byte_array[i]);
     }
-    *(str + str_len) = '\0';
+    *(str + i * 3) = '\0';
 
     return true;
 }
